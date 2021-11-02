@@ -1,0 +1,747 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 05-Feb-2021, 21:56:28
+    Author     : luanakimley
+*/
+html {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--cream);
+}
+
+
+:root {
+    --green: #878532;
+    --darkgreen: #537636;
+    --brown: #7f5f16;
+    --darkbrown: #422e13;
+    --yellow: #dbb95f;
+    --cream: #f4eee1;
+    --font: 'Palanquin Dark', sans-serif;
+}
+
+/* 'Komodo Island' Text */
+
+.title-svg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.cls-1 {
+    fill: none;
+    stroke: #3c3c3b;
+    stroke-miterlimit: 10;
+    stroke-width: 2px;
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: letters 12s linear forwards;
+}
+
+@keyframes letters {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+/* 'The Island of the Dragons' Text */
+
+.title { 
+    font-family: var(--font);
+    font-size: 100px;
+    text-transform: uppercase;
+    text-shadow: #363636 1px 1px, #363636 2px 2px, #363636 3px 3px;
+    font-weight: 600;
+    line-height: 0.75;
+    padding: 15px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin: 0px auto;
+}
+
+.title:nth-child(2) {
+    color: var(--green);
+}
+
+.title:nth-child(3) {
+    color: var(--yellow);
+    font-size: 70px;
+}
+
+.title:nth-child(4) {
+    color: var(--darkgreen);
+}
+
+.container {
+    animation: text-in 5s;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.box1 {
+    background-color: var(--green);
+    position: absolute;
+    height: 90px;
+    z-index: 2;
+    display: flex;
+    animation: box-in 3s 4s forwards;
+} 
+
+.title1 {
+    opacity: 0;
+    animation: title-fade-in 3s 4s forwards;
+}
+
+.title2 {
+    visibility: hidden;
+    animation: title-zoom 2s 6s forwards;
+}
+
+.box2 {
+    background-color: var(--darkgreen);
+    position: absolute;
+    height: 90px;
+    display: flex;
+    opacity: 0;
+    z-index: 2;
+    animation: box-in2 3s 7s;
+}
+
+.title3 {
+    opacity: 0;
+    animation: title-fade-in 3s 7s forwards;
+}
+
+.container {
+    animation: title-shrink 3s 11s forwards, dissapear .1s 15s forwards;
+
+}
+
+@keyframes box-in {
+    0% { 
+        width: 0px;
+        left: 0;
+    }
+    35% {
+        width: 610px;
+
+    }
+    100% {
+        width: 0px;
+        right: 0;
+    }
+
+}
+
+@keyframes box-in2 {
+    0% { 
+        opacity: 1;
+        width: 0px;
+        right: 0;
+    }
+    35% {
+        width: 515px;
+    }
+    100% {
+        width: 0px;
+        left: 0;
+        opacity: 1
+    }
+
+}
+
+@keyframes title-fade-in {
+    0% {
+        opacity: 0;
+    }
+    35% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+
+}
+
+@keyframes title-zoom {
+    0% {
+        visibility: visible;
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+        visibility: visible;
+    }
+}
+
+@keyframes title-shrink {
+    to {
+        transform: scale(0.35);
+        transform-origin: 65vw 50%;
+    }
+}
+
+
+
+/* Book */
+
+.book-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4eee1;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    z-index: -1;
+    animation: zoom-in 3s 17s forwards;
+}
+
+.book {
+    width: 300px;
+    height: 400px;
+    perspective: 1000px;
+    opacity: 0;
+    animation: visible 3s 11s forwards;
+}
+
+
+.cover, .page1{
+    width: 300px;
+    height: 400px;
+    transition: transform 1s;
+    transform-origin: 0% 0%;
+    position: absolute;
+    box-shadow: 0px 0px 200px lightgray;
+
+}
+
+.page1, .cover {
+    background-color: white;
+    box-shadow: 0px 0px 50px whitesmoke inset;
+
+}
+
+.page1 {
+    border-left: 1px solid #ccc;
+}
+
+.text-img {
+    width: inherit;
+    position: absolute;
+    top: 120px;
+    left: 1px;
+    opacity: 0;
+    animation: visible .05s 15s forwards, dissapear 2s 15s forwards;
+}
+
+.cover {
+    animation: book-flip 5s 15s forwards;
+
+}
+
+
+@keyframes book-flip {
+    0% {
+        transform: rotateY(0deg);
+    }
+    100% { 
+        transform: rotateY(-180deg);
+    }
+}
+
+@keyframes visible {
+    to {
+        opacity:1;
+    }
+}
+
+@keyframes dissapear {
+    to {
+        opacity:0;
+    }
+}
+
+@keyframes zoom-in {
+    to {
+        transform: scale(2.4);
+        transform-origin: 0 50%;
+    }
+}
+
+/* Left Content */
+
+.left-content {
+    width: 50%;
+    position: absolute;
+    top:0;
+    left: 0;
+    float: left;
+    height: 100%;
+
+}
+
+.sea {
+    position: absolute;
+    width: 100%;
+    float: bottom;
+    z-index: 1;
+    bottom: 0;
+    opacity: 0;
+    animation: slide-right 3s ease 21s forwards;
+}
+
+.island {
+    position: absolute;
+    width: 80%;
+    left: 150px;
+    opacity:0;
+    z-index: 0;
+    animation: slide-up 3s ease 21s forwards;
+}
+
+
+@keyframes slide-right {
+    from {
+        left: -1000px;
+    }
+    to {
+        left: 0px;
+        opacity: 1;
+    }
+}
+
+@keyframes slide-up {
+    from {
+        top: 1000px;
+    }
+    to {
+        top: 640px;
+        opacity:1;
+        z-index:2;
+    }
+}
+
+.content-svg {
+    width: 75%;
+    display: block;
+    margin: 40px auto;
+    padding-top: 20px;
+}
+
+.cls-2 {
+    fill: var(--darkgreen);
+    stroke-opacity: 0;
+    fill-opacity: 0;
+    stroke: var(--darkgreen);
+    stroke-miterlimit: 10;
+    stroke-width: 2px;
+    stroke-dasharray: 100;
+    stroke-dashoffset: 1000;
+    animation: letters 4s 20s linear forwards infinite, letters-fill 4s 20s linear forwards ;
+}
+
+.left-content p, .left-content ul li {
+    font-family: var(--font);
+    text-align: center;
+    padding: 10px;
+    padding-top: 0px;
+}
+
+.text-left p:nth-child(1), .text-left p:nth-child(2) {
+    color: var(--brown);
+    font-size: 50px;
+    line-height: 0;
+
+}
+
+.text-left p:nth-child(1) span {
+    animation: change-color 1s 24s ease-in forwards;
+    opacity: 0;
+}
+
+.text-left p:nth-child(1) span:nth-child(2) {
+    animation-delay: 25s;
+}
+
+.text-left p:nth-child(1) span:nth-child(3) {
+    animation-delay: 26s;
+}
+
+.text-left p:nth-child(1) span:nth-child(4) {
+    animation-delay: 27s;
+}
+
+.text-left p:nth-child(2) {
+    visibility: hidden;
+    animation: title-zoom 2s 28s forwards;
+}
+
+.zoom {
+    animation: zoom-change-color 1s 30s forwards;
+}
+
+@keyframes change-color {
+    0% {
+        color: var(--yellow);
+    }
+    100% {
+        color: var(--brown);
+        opacity: 1;
+    }
+}
+
+@keyframes zoom-change-color {
+    to {
+        color: var(--darkbrown);
+        font-size: 65px;
+    }
+}
+
+
+.left-content ul li {
+    list-style-type: none;
+    color: var(--brown);
+    font-size: 50px;
+    line-height: 0;
+
+}
+
+.left-content ul {
+    display: flex;
+    justify-content: center;
+}
+
+
+.text-left p:nth-child(3), .text-left p:nth-child(4) {
+    color: var(--green);
+    font-size: 90px;
+    text-transform: uppercase;
+    font-weight: 600;
+    line-height: 0;
+    text-shadow: #363636 1px 1px, #363636 2px 2px, #363636 3px 3px;  
+    animation: rotate-in 3s 31s forwards, beat 1s 34s infinite;
+    opacity: 0;
+}
+
+@keyframes letters-fill {
+    100% {
+        fill-opacity: 1;
+        stroke-opacity:1;
+    }
+}
+
+@keyframes rotate-in {
+    0% {
+        transform: rotate(0deg) scale(0);
+    }
+    100% {
+        opacity: 1;
+        transform: rotate(360deg) scale(1);
+    }
+}
+
+@keyframes beat {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Right Content */
+
+.right-content {
+    width: 50%;
+    font-size: 50px;
+    color: black;
+    position: absolute;
+    margin: 0;
+    top:0;
+    right: 0;
+    float: right;
+    height: 100%;
+    display: flex;
+    align-items: space-evenly;
+    flex-direction: column;
+}
+
+.komodo {
+    height: 350px;
+    float: right;
+    margin-top: 70px;
+    position: absolute;
+    animation: in-out 10s 31s infinite ease-in both;
+    z-index: 2;
+}
+
+.komodo-profile {
+    width: 85%;
+    height: 330px;
+    border: 4px solid var(--darkbrown);
+    display: block;
+    margin: 70px auto;
+    position: relative;
+    border-radius: 35px;
+    font-family: var(--font);
+    animation: slide-left 5s 33s ease-in both;
+
+}
+
+.komodo-profile h2, .komodo-profile p {
+    padding: 0;
+    line-height: 0.5;
+    text-align: center;
+
+}
+
+.komodo-profile h2 {
+    color: var(--brown);
+}
+
+.komodo-profile p {
+    color: var(--yellow);
+    text-shadow: #363636 1px 1px, #363636 2px 2px, #363636 3px 3px;
+}
+
+.text-right {
+    display: block;
+    margin-left: 50px; 
+    font-family: var(--font);
+    font-size: 25px;
+    flex-direction: row;
+    margin: 0;
+    position: absolute;
+    bottom: 370px;
+    right: 80px;
+    background-color: var(--darkgreen);
+    padding: 5px;
+    border-radius: 10px;
+    color: white;
+    opacity: 0;
+    animation: visible 3s 38s forwards, beat 1s 43s infinite;
+    z-index: 2;
+}
+
+
+.map {
+    width: 85%;
+    display: block;
+    margin:  auto;
+    border-radius: 35px;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    bottom: 0px;
+    left: 60px;
+
+}
+
+.map-line {
+    position: relative;
+    opacity: 0;
+    animation: visible 3s 38s forwards;
+}
+
+.line {
+    fill:none;
+    stroke: #ce0000;
+    stroke-miterlimit: 10;
+    stroke-width: 5px;
+    width: 300px;
+    stroke-dashoffset: 1000;
+    stroke-dasharray: 1000;
+    animation: letters 5.5s 40s linear forwards;
+}
+
+.line-svg {
+    width: 505px;
+    left: 115px;
+    bottom: -5px; 
+    position: relative;
+}
+
+@keyframes in-out {
+    0% {
+        right: -550px;
+    }
+    50% {
+        right: 0px;
+    }
+    100% {
+        right: -550px;
+    }
+
+}
+
+@keyframes slide-left {
+    0% {
+        right: -1000px;
+    }
+    100% {
+        right: 0px;
+    }
+}
+
+.canvas-bg {
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--cream);
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    z-index: 4;
+    animation: visible 3s 50s forwards;
+}
+
+#canvas {
+    width: 1002px;
+    height: 735px;
+    background-color: var(--darkgreen);
+    border: 1px solid black;
+}
+
+#loadingMessage {
+    position: absolute;
+    z-index: 100;
+    font-size: 50px;
+    font-family: var(--font);
+    color: white;
+}
+
+#canvasContainer {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: canvas-in 3s 53s both;
+}
+
+#start {
+    width: 90px;
+    height: 270px;
+    padding: 10px;
+    border-radius: 20px;
+    color: white;
+    font-size: 27px;
+    margin-right: 20px;
+    background-color: var(--darkbrown);
+    line-height: 1;
+    text-align: center;
+    font-family: var(--font);
+    opacity: 0;
+    animation: visible 6s 56s forwards;
+}
+
+#count span {
+    display: inline-block;
+    margin-top: 0px;
+}
+
+#count span:nth-child(1)
+{
+    font-size: 110px;
+
+}
+
+#count span:nth-child(2)
+{
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+#count
+{
+    margin-top: 18px;
+    background-color: var(--brown);
+    width: 100%;
+    display: block;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    height: 170px;
+}
+
+#message
+{
+    position: absolute;
+    width: 400px;
+    height: 300px;
+    top: 310px;
+    left: 575px;
+    background-color: var(--brown);
+    box-shadow: 10px 10px var(--darkbrown); 
+    visibility: hidden;
+}
+
+#close 
+{
+    font-size: 40px;
+    color: white;
+    position: absolute;
+    cursor: pointer;
+    right: 20px;
+    top: 0;
+    font-family: var(--font);
+    margin: 0;
+}
+
+#lose 
+{
+    position: absolute;
+    font-family: var(--font);
+    color: white;
+    font-size: 55px;
+    line-height: 1;
+    text-align: center;
+    top: 95px;
+    left: 0;
+    visibility: hidden;
+}
+
+#win 
+{
+    position: absolute;
+    font-family: var(--font);
+    color: white;
+    font-size: 55px;
+    line-height: 1;
+    text-align: center;
+    top: 110px;
+    left: 95px;
+    visibility: hidden;
+}
+
+@keyframes canvas-in {
+    from {
+        top: -1000px;
+        opacity: 0;
+    }
+    to {
+        top: 0px;
+        opacity: 1;
+    }
+}
